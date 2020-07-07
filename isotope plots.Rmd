@@ -1,0 +1,79 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+## this is a test to try and format a reasonable stable isotope cross plot in r
+
+First load ggplot2
+```{r}
+library(ggplot2)
+```
+
+
+Then generate some dummy data
+
+
+```{r}
+data <- data.frame(x = 1:10, y = 1:10)    #  dummy data in a frame
+```
+        
+then plot it
+
+```{r}
+ggp <- ggplot(data, aes(x, y)) +   # Create plot without text
+  geom_point()
+ggp                      # Draw ggplot
+```
+
+Then add some axis labels and a title
+
+```{r}
+ggp +                                 
+  xlab("d13C VPDB") +  # add x axis label
+  ylab("d15N AIR") +   # add y axis label
+ggtitle(expression("Test isotope cross plot" ~ delta * beta))
+
+```
+
+OK  but those axis lables are a bit lame no superscriots and no delta symbol...Can we fix this
+
+
+
+
+  these bits are from ericas normalisation script                 
+```{r}
+#d15N <- expression(paste("Normalized ", delta^{15},"N (\u2030)"))
+d13C <- expression(paste("Normalized ", delta^{13},"C (\u2030)"))
+d13C
+```
+
+
+
+
+we will use those later
