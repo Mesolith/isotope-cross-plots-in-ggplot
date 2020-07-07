@@ -62,8 +62,17 @@ ggtitle(expression("Test isotope cross plot" ~ delta * beta))
 ```
 
 OK  but those axis lables are a bit lame no superscriots and no delta symbol...Can we fix this
+OK  but those axis lables are a bit lame no superscripts and no delta symbol...Can we fix this
 
+we could try expression paste
+```{r}
+ggp+
+  xlab(expression(paste(delta, "13C VPDB ")))+
+  ylab(expression(paste(delta, "15N AIR")))
 
+```
+
+alright what about those mass numbers as superscripts
 
 
   these bits are from ericas normalisation script                 
