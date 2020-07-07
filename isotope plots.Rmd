@@ -70,11 +70,19 @@ we could try expression paste
 ggp+
   xlab(expression(paste(delta, "13C VPDB ")))+
   ylab(expression(paste(delta, "15N AIR")))
+  xlab(expression(paste(delta, "13C VPDB (\u2030)")))+
+  ylab(expression(paste(delta, "15N AIR (\u2030)")))
 
 ```
 
 alright what about those mass numbers as superscripts
+```{r}
+ggp+
+ xlab(bquote(delta ^13~'C VPDB (\u2030)'))+
+ ylab(bquote(delta ^15~'N AIR (\u2030)'))
+```
 
+m^-2~
 
   these bits are from ericas normalisation script                 
 ```{r}
