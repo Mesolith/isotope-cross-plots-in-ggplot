@@ -62,6 +62,7 @@ ggtitle(expression("Test isotope cross plot" ~ delta * beta))
 ```
 
 OK  but those axis lables are a bit lame no superscriots and no delta symbol...Can we fix this
+
 OK  but those axis lables are a bit lame no superscripts and no delta symbol...Can we fix this
 
 we could try expression paste
