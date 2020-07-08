@@ -68,14 +68,14 @@ OK  but those axis lables are a bit lame no superscripts and no delta symbol...C
 we could try expression paste
 ```{r}
 ggp+
-  xlab(expression(paste(delta, "13C VPDB ")))+
-  ylab(expression(paste(delta, "15N AIR")))
   xlab(expression(paste(delta, "13C VPDB (\u2030)")))+
   ylab(expression(paste(delta, "15N AIR (\u2030)")))
 
 ```
 
-alright what about those mass numbers as superscripts
+alright what about those mass numbers as superscripts for some reason I can not get that to work with expression(paste).
+
+But I can get it to work using bquote
 ```{r}
 ggp+
  xlab(bquote(delta ^13~'C VPDB (\u2030)'))+
@@ -83,6 +83,44 @@ ggp+
 ```
 
 m^-2~
+So we can use bquote to make an axis lable and store it for latter use. Note it only renders propoerly in ggplot where the expression is evaluated.
+
+```{r}
+d15Nlable <-bquote(delta ^15~'N AIR (\u2030)')
+d13Clable <-bquote(delta ^13~'C VPDB (\u2030)')
+ggp+
+  ylab(d15Nlable)+
+  xlab(d13Clable)
+
+```
+
+
+Ok let's try a version with more realistic data and try to apply a theme to get a nicer looking plot. 
+
+As we are going to use some tidyverse functions lets load tidyverse
+
+```{r}
+library(tidyverse)
+```
+
+next load in a csv file of the data
+```{r}
+plot_test_data <- read_csv("plot test data.csv")
+View(plot_test_data)
+```
+
+Ok note that the column taxa has been imported as text characters but it will be more helpful if this is converted to a factor.
+
+```{r}
+plot_test_data$Taxa <- as.factor(plot_test_data$Taxa)
+```
+
+and check that it has changed
+
+```{r}
+class(plot_test_data$Taxa)
+```
+
 
   these bits are from ericas normalisation script                 
 ```{r}
